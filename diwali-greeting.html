@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#222f3e">
+  <title>Happy Diwali Greetings ✨</title>
+  <meta name="description" content="Create a personalized Happy Diwali greeting.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { font-family: "Hind Madurai", sans-serif; color: #20142d; background: linear-gradient(#f5b52b, #fff, #be2148); }
+    * { box-sizing: border-box; }
+    body { min-width: 320px; min-height: 100vh; margin: 0; font-weight: 600; }
+    button, input, select { font: inherit; }
+    .page { min-height: 100vh; padding: 28px 16px 72px; display: flex; justify-content: center; }
+    .content { width: min(100%, 430px); text-align: center; }
+    .hidden { display: none !important; }
+    .loader { width: 52px; height: 52px; margin: 28px auto; border: 5px solid rgba(22, 101, 52, .2); border-top-color: #166534; border-bottom-color: #166534; border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .rocket-container { height: 178px; display: flex; align-items: center; justify-content: center; }
+    .bottle { position: relative; width: 100px; height: 150px; padding-bottom: 20px; display: flex; align-items: flex-end; justify-content: center; }
+    .rocket-body { position: relative; width: 40px; height: 120px; border-radius: 20px; background: linear-gradient(#ff5555,#e30000); box-shadow: 0 0 14px rgba(255,0,0,.8); }
+    .rocket-head { position: absolute; top: -42px; left: -9px; width: 0; height: 0; border-left: 30px solid transparent; border-right: 30px solid transparent; border-bottom: 40px solid #de1808; }
+    .rocket-tail { position: absolute; bottom: 0; width: 40px; height: 12px; border-radius: 50%; background: #ffcccc; }
+    .rocket-flames { position: absolute; bottom: -50px; left: 50%; width: 40px; height: 60px; transform: translateX(-50%); }
+    .outer-flame, .inner-flame { position: absolute; bottom: 0; width: 0; height: 0; filter: blur(1px); animation: flicker .18s infinite alternate; }
+    .outer-flame { border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid #ff9900; }
+    .inner-flame { left: 50%; bottom: 5px; transform: translateX(-50%); border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 30px solid #ffff66; animation-duration: .24s; }
+    .rocket-text { position: absolute; top: -85%; left: 50%; color: #fff; font-size: 18px; font-weight: 700; text-shadow: 0 0 3px #fff; writing-mode: vertical-rl; transform: translate(-50%,-50%) rotate(180deg); }
+    @keyframes flicker { from { opacity: 1; transform: translateY(0); } to { opacity: .8; transform: translateY(5px); } }
+    .card { margin: 10px auto; padding: 24px; border-radius: 16px; background: linear-gradient(135deg,#fff,#f3f3f3); box-shadow: 0 8px 22px rgba(0,0,0,.2); }
+    h1 { margin: 0 0 10px; color: #27202f; font-size: clamp(1.7rem, 7vw, 2.2rem); }
+    p { margin: 10px 0 18px; font-size: 1.05rem; }
+    .form { padding: 22px; border-radius: 14px; color: #fff; background: linear-gradient(135deg,#8b35b7,#7c153f); }
+    input, select { width: 100%; padding: 12px 14px; border: 2px solid #ddd; border-radius: 9px; color: #4b123d; background: #fff4b8; outline: none; }
+    input:focus, select:focus { border-color: #ffcf33; box-shadow: 0 0 0 3px rgba(255,207,51,.3); }
+    .error { min-height: 22px; margin: 7px 0 0; color: #ffe45d; font-size: .95rem; font-style: italic; }
+    .primary, .action { border: 0; border-radius: 999px; padding: 12px 18px; color: #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,.16); transition: transform .2s, filter .2s; }
+    .primary { width: 100%; background: linear-gradient(90deg,#fb7185,#a855f7); }
+    .action { background: linear-gradient(90deg,#20a96b,#087443); }
+    .primary:hover, .action:hover, .share:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .greeting-image { display: block; width: 100%; max-width: 430px; margin: 0 auto 14px; border-radius: 8px; box-shadow: 0 7px 18px rgba(0,0,0,.25); }
+    .save { display: inline-block; margin-bottom: 16px; padding: 10px 18px; border-radius: 999px; color: #fff; text-decoration: none; background: linear-gradient(90deg,#8b35b7,#ec4899,#eab308); }
+    .chat { padding: 18px; border-radius: 12px; background: #128c7e; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
+    .bubble { max-width: 94%; margin: 10px 0; padding: 14px; border-radius: 12px; color: #303030; text-align: left; white-space: pre-wrap; background: #dcf8c6; box-shadow: 0 2px 4px rgba(0,0,0,.12); }
+    .bubble.right { margin-left: auto; }
+    .bubble.left { margin-right: auto; }
+    .time { margin-top: 7px; color: #777; font-size: .68rem; text-align: right; }
+    .language-label { display: block; margin: 14px 0 6px; color: #111; }
+    .share-card { margin-top: 18px; padding: 18px; border-radius: 12px; background: #fff; box-shadow: 0 5px 14px rgba(0,0,0,.17); }
+    .share-buttons { display: flex; justify-content: center; gap: 10px; margin: 14px 0; }
+    .share { width: 44px; height: 44px; border: 0; border-radius: 50%; color: #fff; font-size: 1.15rem; cursor: pointer; transition: transform .2s, filter .2s; }
+    .facebook { background: #1877f2; } .whatsapp { background: #16a34a; } .telegram { background: #229ed9; } .native { background: #a855f7; }
+    .options { margin-top: 18px; }
+    .toggle { display: inline-flex; align-items: center; gap: 9px; cursor: pointer; }
+    .switch { position: relative; width: 58px; height: 30px; border-radius: 30px; background: #8b35b7; }
+    .switch::after { content: ""; position: absolute; top: 4px; left: 4px; width: 22px; height: 22px; border-radius: 50%; background: #fff; transition: transform .2s; }
+    .toggle input:checked + .switch { background: #22a365; }
+    .toggle input:checked + .switch::after { transform: translateX(28px); }
+    .toggle input { position: absolute; opacity: 0; width: 1px; }
+    .option-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 12px; padding: 16px; border-radius: 10px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+    .toast { position: fixed; right: 16px; bottom: 54px; max-width: 290px; padding: 12px 15px; border-radius: 9px; color: #fff; background: #292524; box-shadow: 0 5px 15px rgba(0,0,0,.25); }
+    .watermark { position: fixed; z-index: 10; bottom: 10px; left: 50%; padding: 3px 8px; border-radius: 999px; color: rgba(255,255,255,.72); background: rgba(0,0,0,.18); font-size: 11px; font-weight: 500; letter-spacing: .03em; line-height: 1.4; transform: translateX(-50%); pointer-events: none; user-select: none; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="content">
+      <section id="home-view">
+        <div class="rocket-container" aria-hidden="true"><div class="bottle"><div class="rocket-body"><div class="rocket-head"></div><div class="rocket-tail"></div><div class="rocket-flames"><div class="outer-flame"></div><div class="inner-flame"></div><div class="rocket-text">Diwali</div></div></div></div></div>
+        <div class="card">
+          <h1>Happy Diwali Greeting ✨</h1>
+          <p>Enter your name to receive a personalized greeting.</p>
+          <form id="name-form" class="form" novalidate>
+            <input id="name-input" type="text" autocomplete="off" maxlength="36" placeholder="Enter your name here" aria-label="Your name">
+            <div id="name-error" class="error" aria-live="polite"></div>
+            <button class="primary" type="submit">Create Greeting</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="greeting-view" class="hidden">
+        <div id="page-loader" class="loader" aria-label="Loading"></div>
+        <div id="greeting-content" class="hidden">
+          <div class="rocket-container" aria-hidden="true"><div class="bottle"><div class="rocket-body"><div class="rocket-head"></div><div class="rocket-tail"></div><div class="rocket-flames"><div class="outer-flame"></div><div class="inner-flame"></div><div class="rocket-text">Diwali</div></div></div></div></div>
+          <img id="greeting-image" class="greeting-image" width="1080" height="1080" alt="Personalized Diwali greeting">
+          <a id="save-link" class="save" target="_blank" rel="noopener">⇩ Save</a>
+          <div class="chat">
+            <div class="bubble right"><strong id="display-name"></strong><div class="time" data-time></div></div>
+            <label class="language-label" for="language-select">Choose Language</label>
+            <select id="language-select">
+              <option value="en">English</option><option value="hi">Hindi</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="ml">Malayalam</option><option value="kn">Kannada</option>
+            </select>
+            <div class="bubble left" id="message-greeting"><div class="time" data-time></div></div>
+            <div class="bubble right" id="message-one"><div class="time" data-time></div></div>
+            <div class="bubble left" id="message-two"><div class="time" data-time></div></div>
+          </div>
+          <div class="share-card">
+            <strong>Share Your Greeting</strong>
+            <div class="share-buttons">
+              <button class="share facebook" data-share="facebook" aria-label="Share on Facebook">f</button>
+              <button class="share whatsapp" data-share="whatsapp" aria-label="Share on WhatsApp">◔</button>
+              <button class="share telegram" data-share="telegram" aria-label="Share on Telegram">➤</button>
+              <button class="share native" data-share="native" aria-label="Share">↗</button>
+            </div>
+            <button id="home-button" class="action" type="button">Create New</button>
+          </div>
+          <div class="options">
+            <label class="toggle"><span id="toggle-label">Show Options</span><input id="options-toggle" type="checkbox"><span class="switch"></span></label>
+            <div id="option-actions" class="option-actions hidden"><button id="copy-button" class="action" type="button">Copy URL</button><button class="action" type="button" data-home>Create</button></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div class="watermark">Made by Adithyan</div>
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <script>
+    const messages = {
+      en: { greeting: "Happy Diwali Wishes ✨", one: "Wishing you a Diwali filled with happiness, prosperity, and bright moments. May this festival of lights bring joy to your heart and success to your life. Happy Diwali!", two: "May this Diwali bring lights of happiness, prosperity, and peace into your life! Wishing you a very Happy Diwali!" },
+      ta: { greeting: "இனிய தீபாவளி நல்வாழ்த்துக்கள் ✨", one: "இந்த தீபாவளி உங்கள் வாழ்க்கையில் சந்தோஷம், செல்வம், மற்றும் ஒளிமயமான தருணங்களை கொண்டு வரட்டும். ஒளிகளின் திருவிழா உங்கள் மனதில் மகிழ்ச்சியை, உங்கள் வாழ்வில் வெற்றியை ஏற்படுத்தட்டும். இனிய தீபாவளி நல்வாழ்த்துகள்!", two: "இந்நாளில் உங்கள் வாழ்க்கையில் ஒளி நிறைந்த செல்வம், சுகம், சமாதானம் நிலவட்டும்! இனிய தீபாவளி நல்வாழ்த்துகள்!" },
+      hi: { greeting: "दिवाली की हार्दिक शुभकामनाएँ ✨", one: "आपको और आपके परिवार को दीपावली की हार्दिक शुभकामनाएँ। यह दीपों का त्योहार आपके जीवन में सुख, शांति और समृद्धि लेकर आए। हैप्पी दिवाली!", two: "इस दिवाली, आपके जीवन में खुशियों के दीप जलते रहें और समृद्धि आपके घर का मेहमान बने! दीपावली की हार्दिक शुभकामनाएं!" },
+      te: { greeting: "దీపావళి శుభాకాంక్షలు ✨", one: "మీకు మరియు మీ కుటుంబానికి దీపావళి శుభాకాంక్షలు. ఈ దీపాల పండుగ మీ జీవితంలో ఆనందం, సంపద మరియు శాంతిని తీసుకురావాలని కోరుకుంటున్నాను. మీకు హ్యాపీ దీపావళి!", two: "ఈ దీపావళి మీరు మరియు మీ కుటుంబం కోసం సంతోషం, ధనం, ఆరోగ్యం మరియు శాంతి తెచ్చిపెడుతుంది! దీపావళి శుభాకాంక్షలు!" },
+      ml: { greeting: "ദീപാവലി ആശംസകൾ ✨", one: "നിങ്ങളും നിങ്ങളുടെ കുടുംബവും ഒരുപാട് സന്തോഷങ്ങളും സമൃദ്ധിയും നിറഞ്ഞ ദീപാവലി ആചരിക്കട്ടെ. ഈ ദീപങ്ങളുടെ ഉത്സവം നിങ്ങളുടെ ജീവിതം ഉജ്ജ്വലമാക്കട്ടെ. ഹാപ്പി ദീപാവലി!", two: "ഈ ദീപാവലി ദിനം നിങ്ങളുടെ ജീവിതത്തിൽ സമൃദ്ധിയും സുഖവും എപ്പോഴും നിറഞ്ഞിരിക്കട്ടെ! ഹാപ്പി ദീപാവലി ആശംസകൾ!" },
+      kn: { greeting: "ದೀಪಾವಳಿ ಹಾರ್ದಿಕ ಶುಭಾಶಯಗಳು ✨", one: "ನೀವು ಮತ್ತು ನಿಮ್ಮ ಕುಟುಂಬಕ್ಕೆ ದೀಪಾವಳಿ ಹಬ್ಬದ ಹಾರ್ದಿಕ ಶುಭಾಶಯಗಳು. ಈ ದೀಪಗಳ ಹಬ್ಬವು ನಿಮ್ಮ ಜೀವನದಲ್ಲಿ ಸಂತೋಷ, ಶಾಂತಿ, ಮತ್ತು ಸಮೃದ್ಧಿಯನ್ನು ತರುತ್ತಿರಲಿ. ಹ್ಯಾಪಿ ದೀಪಾವಳಿ!", two: "ಈ ದೀಪಾವಳಿ ನಿಮಗೆ ಆಯುಷ್ಯ, ಸಂಪತ್ತು, ಸಂತೋಷ ಮತ್ತು ಶಾಂತಿ ತಂದುಕೊಡಲಿ! ದೀಪಾವಳಿ ಹಬ್ಬದ ಶುಭಾಶಯಗಳು!" }
+    };
+    const $ = (id) => document.getElementById(id);
+    const slugify = (value) => value.trim().replace(/[*+~.()'"!:@]/g, '').replace(/\s+/g, '-');
+    const cleanName = (value) => {
+      const name = decodeURIComponent(value || '').replace(/[<>]/g, '').trim().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ');
+      return name.length >= 2 && name.length <= 36 ? name : '';
+    };
+    const currentUrl = () => window.location.href;
+    const timeNow = () => new Intl.DateTimeFormat('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Asia/Kolkata' }).format(new Date());
+    let name = cleanName(new URLSearchParams(window.location.search).get('name'));
+    let language = localStorage.getItem('selectedLanguage') || 'en';
+    let toastTimer;
+
+    function showToast(text) { $('toast').textContent = text; $('toast').classList.remove('hidden'); clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').classList.add('hidden'), 2600); }
+    function goHome() { history.pushState({}, '', window.location.pathname); name = ''; $('greeting-view').classList.add('hidden'); $('home-view').classList.remove('hidden'); document.title = 'Happy Diwali Greetings ✨'; }
+    function renderMessages() {
+      const set = messages[language];
+      $('language-select').value = language;
+      $('message-greeting').firstChild.textContent = set.greeting;
+      $('message-one').firstChild.textContent = set.one;
+      $('message-two').firstChild.textContent = set.two;
+      document.querySelectorAll('[data-time]').forEach((el) => el.textContent = timeNow());
+    }
+    function renderGreeting() {
+      const slug = slugify(name);
+      const imageUrl = 'https://img.sanweb.info/dw/dw?name=' + encodeURIComponent(slug);
+      document.title = name + ' - Happy Diwali Greetings ✨';
+      $('home-view').classList.add('hidden'); $('greeting-view').classList.remove('hidden'); $('page-loader').classList.remove('hidden'); $('greeting-content').classList.add('hidden');
+      $('display-name').textContent = name + ' ✨'; $('greeting-image').src = imageUrl; $('greeting-image').alt = 'Personalized Diwali greeting for ' + name; $('save-link').href = 'https://img.sanweb.info/dl/file?url=' + encodeURIComponent(imageUrl);
+      renderMessages();
+      setTimeout(() => { $('page-loader').classList.add('hidden'); $('greeting-content').classList.remove('hidden'); }, 450);
+    }
+    $('name-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const value = $('name-input').value.trim();
+      $('name-error').textContent = !value ? 'Name cannot be empty.' : value.length < 2 ? 'Name must be at least 2 characters.' : value.length > 36 ? 'Name cannot exceed 36 characters.' : '';
+      if ($('name-error').textContent) return;
+      name = cleanName(value); history.pushState({}, '', '?name=' + encodeURIComponent(name)); renderGreeting();
+    });
+    $('language-select').addEventListener('change', (event) => { language = event.target.value; localStorage.setItem('selectedLanguage', language); renderMessages(); });
+    $('home-button').addEventListener('click', goHome); document.querySelector('[data-home]').addEventListener('click', goHome);
+    $('options-toggle').addEventListener('change', (event) => { const open = event.target.checked; $('option-actions').classList.toggle('hidden', !open); $('toggle-label').textContent = open ? 'Hide Options' : 'Show Options'; });
+    $('copy-button').addEventListener('click', async () => { try { await navigator.clipboard.writeText(currentUrl()); showToast('URL copied'); } catch { showToast('Unable to copy URL.'); } });
+    document.querySelectorAll('[data-share]').forEach((button) => button.addEventListener('click', () => {
+      const url = encodeURIComponent(currentUrl()), title = encodeURIComponent(name + ' - Sending You the Happy Diwali Greetings ✨');
+      const platform = button.dataset.share;
+      if (platform === 'native' && navigator.share) return navigator.share({ title: name + ' - Happy Diwali', text: 'Happy Diwali From ' + name, url: currentUrl() }).catch(() => {});
+      if (platform === 'native') return showToast('Native sharing is available on supported mobile devices.');
+      const links = { facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url, whatsapp: 'https://api.whatsapp.com/send?text=' + title + '%20' + url, telegram: 'https://t.me/share/url?url=' + url + '&text=' + title };
+      window.open(links[platform], '_blank', 'noopener,noreferrer');
+    }));
+    window.addEventListener('popstate', () => { name = cleanName(new URLSearchParams(window.location.search).get('name')); name ? renderGreeting() : goHome(); });
+    if (name) renderGreeting();
+  </script>
+</body>
+</html>
