@@ -4,10 +4,15 @@ import GreetingPage from './components/GreetingPage';
 
 const App = () => {
   return (
-    <Router>
-      <Route path="/" component={Greeting} />
-      <Route path="/:name" component={GreetingPage} />
-    </Router>
+    <>
+      <Router>
+        <Route path="/" component={Greeting} />
+        <Route path="/:name" component={GreetingPage} />
+      </Router>
+      <div className="watermark" aria-label="Made by Adithyan">
+        Made by Adithyan
+      </div>
+    </>
   );
 };
 
